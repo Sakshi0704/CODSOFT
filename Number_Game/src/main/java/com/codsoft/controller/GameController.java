@@ -25,14 +25,16 @@ public class GameController {
 	public ResponseEntity<List<Game>> retriveAllGames(){
 		
 		
-		return new ResponseEntity<List<Game>>(null, HttpStatus.OK);
+		//return new ResponseEntity<List<Game>>(null, HttpStatus.OK);
+		return null;
 	}
 	
 	@GetMapping("/game")
 	public ResponseEntity<Game> retriveGame(@PathVariable Integer gameId){
 		
 		
-		return new ResponseEntity<Game>(null, HttpStatus.OK);
+		//return new ResponseEntity<Game>(null, HttpStatus.OK);
+		return null;
 	}
 	
 }
