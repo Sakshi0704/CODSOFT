@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ public class UsersController {
 	@Autowired
 	private UsersService userService;
 	
-	@PostMapping("/user")
+	@PostMapping("/user") // http://localhost:8088/user
 	public ResponseEntity<Users> registerUserHandler(@RequestBody Users user) throws UsersNotFoundException{
 		
 		Users saveUser = userService.registerUser(user);
@@ -50,7 +51,7 @@ public class UsersController {
 	}
 	
 	
-	@PatchMapping("/user/{userId}")
+	@PutMapping("/user/{userId}")
 	public ResponseEntity<Users> updateUserDetailsHandler(@RequestBody Users user , @PathVariable Integer userId) throws UsersNotFoundException{
 		
 		Users updatedUser = userService.updateUserDetails(user, userId);

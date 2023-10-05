@@ -4,6 +4,7 @@ import java.util.List;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -41,7 +42,7 @@ public class Users {
 	private Role role;
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "user")
-	@JsonProperty
+	@JsonIgnore
 	private List<Game> games = new ArrayList<>();
 
 	public Integer getUserId() {

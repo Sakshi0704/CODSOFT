@@ -57,22 +57,24 @@ public class UsersServiceImpl implements UsersService{
 	public Users updateUserDetails(Users user, Integer userId) throws UsersNotFoundException {
 		// TODO Auto-generated method stub
 		
-		Optional<Users> existUser = userRepository.findById(userId);
+		Optional<Users> otp = userRepository.findById(userId);
 		
-		if(!existUser.isPresent()) {
+		if(!otp.isPresent()) {
 			throw new UsersNotFoundException("User does not exist with userId "+ userId);
 		}
 		
-		userRepository.save(user);
+		Users existUser = otp.get();
+		if(!existUser.getEmail().equals(user.getEmail())){
+			existUser.setEmail(user.getEmail());
+		}
+		if(!existUser.getName().equals(user.getName())) {
+			existUser.setName(user.getName());
+		}
 		
-		return user;
+		userRepository.save(existUser);
+		
+		return existUser;
 	}
-
-//	@Override
-//	public Users deleteUser(Integer userId) throws UsersNotFoundException {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 
 	@Override
 	public Users deleteUser(Integer userId) throws UsersNotFoundException {
