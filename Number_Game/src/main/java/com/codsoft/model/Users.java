@@ -1,14 +1,21 @@
 package com.codsoft.model;
 
+import java.util.List;
+
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 
 @Entity
@@ -26,6 +33,10 @@ public class Users {
 	
 	@Enumerated(EnumType.STRING)
 	private Role role;
+	
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "user")
+	@JsonProperty
+	private List<Game> games = new ArrayList<>();
 
 	public Integer getUserId() {
 		return userId;
@@ -57,6 +68,14 @@ public class Users {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public List<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Game> games) {
+		this.games = games;
 	}
 
 	

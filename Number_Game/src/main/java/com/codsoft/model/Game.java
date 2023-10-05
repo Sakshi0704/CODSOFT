@@ -22,7 +22,7 @@ public class Game{
 	private Integer round;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Users users;
+	private Users user;
 
 
 	public Integer getGameId() {
@@ -49,13 +49,12 @@ public class Game{
 		this.round = round;
 	}
 
-	public Users getUsers() {
-		return users;
+	public Users getUser() {
+		return user;
 	}
 
-	public void setUsers(Users users) {
-		this.users = users;
+	public void setUser(Users user) {
+		this.user = user;
 	}
-
 	
 }
