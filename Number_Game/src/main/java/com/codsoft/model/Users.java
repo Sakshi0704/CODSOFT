@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -16,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Email;
 
 @Entity
@@ -25,8 +27,12 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer userId;
 	
+	private String name;
+	
 	@Email
+	@Column(unique = true)
 	private String email;
+	
 	
 	@JsonProperty(access = Access.READ_WRITE)
 	private String password;
@@ -44,6 +50,16 @@ public class Users {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {

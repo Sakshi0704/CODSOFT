@@ -19,11 +19,10 @@ public class Game{
 	private Long scores;
 	
 	@Size(min = 1, max = 5 , message = "Rounds should be greater then 0 or lesser then 6")
-	private Integer round;
+	private Integer take_rounds;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Users user;
-
 
 	public Integer getGameId() {
 		return gameId;
@@ -41,12 +40,12 @@ public class Game{
 		this.scores = scores;
 	}
 
-	public Integer getRound() {
-		return round;
+	public Integer getTake_rounds() {
+		return take_rounds;
 	}
 
-	public void setRound(Integer round) {
-		this.round = round;
+	public void setTake_rounds(Integer take_rounds) {
+		this.take_rounds = take_rounds;
 	}
 
 	public Users getUser() {
