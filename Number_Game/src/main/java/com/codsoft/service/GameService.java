@@ -7,8 +7,12 @@ import com.codsoft.model.Game;
 
 public interface GameService {
 
-	public List<Game> retriveAllGames(Integer userId) throws GameNotFoundException;
+	public List<Game> retriveAllGamesWithUser() throws GameNotFoundException;
 	
-	public Game retriveGame(Integer gameId) throws GameNotFoundException;
+	public List<Game> retriveAllGamesUserId(Integer userId) throws GameNotFoundException;
+	
+	public Game retriveGameByGameId(Integer gameId) throws GameNotFoundException;
+	
+	public Game deleteGameByGameId(Integer gameId) throws GameNotFoundException;
 	
 }

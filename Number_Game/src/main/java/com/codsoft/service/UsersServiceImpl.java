@@ -80,12 +80,12 @@ public class UsersServiceImpl implements UsersService{
 	public Users deleteUser(Integer userId) throws UsersNotFoundException {
 		// TODO Auto-generated method stub
 		
-		Users deleteUser = userRepository.deleteByUserId(userId);
-		if(deleteUser == null) {
+		Optional<Users> opt = userRepository.deleteByUserId(userId);
+		if(!opt.isPresent()) {
 			throw new UsersNotFoundException("User does not exist with userId "+ userId);
 		}
 		
-		return deleteUser;
+		return opt.get();
 	}
 
 }
