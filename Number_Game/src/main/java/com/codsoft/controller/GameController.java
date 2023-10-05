@@ -15,7 +15,6 @@ import com.codsoft.model.Game;
 import com.codsoft.service.GameService;
 
 @RestController
-@RequestMapping("/numbergame")
 public class GameController {
 
 	@Autowired

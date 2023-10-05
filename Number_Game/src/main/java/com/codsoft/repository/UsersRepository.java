@@ -14,6 +14,6 @@ public interface UsersRepository extends JpaRepository<Users, Integer>{
 	
 	public Optional<Users> findByEmail(String email);
 	
-	@Query("select u from users u where u.userId = :userId")
-	public Optional<Users> deleteByUserId(@PathVariable Integer userId);
+	@Query("select u from Users u where u.userId = :userId")
+	public Users deleteByUserId(@PathVariable Integer userId);
 }

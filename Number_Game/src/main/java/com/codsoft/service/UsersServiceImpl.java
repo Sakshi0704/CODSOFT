@@ -68,16 +68,22 @@ public class UsersServiceImpl implements UsersService{
 		return user;
 	}
 
+//	@Override
+//	public Users deleteUser(Integer userId) throws UsersNotFoundException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
 	@Override
 	public Users deleteUser(Integer userId) throws UsersNotFoundException {
 		// TODO Auto-generated method stub
 		
-		Optional<Users> deleteUser = userRepository.deleteByUserId(userId);
-		if(!deleteUser.isPresent()) {
+		Users deleteUser = userRepository.deleteByUserId(userId);
+		if(deleteUser == null) {
 			throw new UsersNotFoundException("User does not exist with userId "+ userId);
 		}
 		
-		return deleteUser.get();
+		return deleteUser;
 	}
 
 }
