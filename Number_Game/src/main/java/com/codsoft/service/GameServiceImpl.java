@@ -18,8 +18,7 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public List<Game> retriveAllGames(Integer userId) throws GameNotFoundException {
 		// TODO Auto-generated method stub
-	
-		
+
 		return null;
 	}
 

@@ -53,4 +53,31 @@ public class UsersServiceImpl implements UsersService{
 		return user.get();
 	}
 
+	@Override
+	public Users updateUserDetails(Users user, Integer userId) throws UsersNotFoundException {
+		// TODO Auto-generated method stub
+		
+		Optional<Users> existUser = userRepository.findById(userId);
+		
+		if(!existUser.isPresent()) {
+			throw new UsersNotFoundException("User does not exist with userId "+ userId);
+		}
+		
+		userRepository.save(user);
+		
+		return user;
+	}
+
+	@Override
+	public Users deleteUser(Integer userId) throws UsersNotFoundException {
+		// TODO Auto-generated method stub
+		
+		Optional<Users> deleteUser = userRepository.deleteByUserId(userId);
+		if(!deleteUser.isPresent()) {
+			throw new UsersNotFoundException("User does not exist with userId "+ userId);
+		}
+		
+		return deleteUser.get();
+	}
+
 }

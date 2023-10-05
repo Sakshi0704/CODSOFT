@@ -13,4 +13,8 @@ public interface UsersService {
 	
 	public Users retriveUser(String email) throws UsersNotFoundException;
 	
+	public Users updateUserDetails(Users user , Integer userId) throws UsersNotFoundException;
+	
+	public Users deleteUser(Integer userId) throws UsersNotFoundException;
+	
 }
