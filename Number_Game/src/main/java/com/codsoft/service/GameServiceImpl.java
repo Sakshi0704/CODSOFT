@@ -8,14 +8,20 @@ import org.springframework.stereotype.Service;
 
 import com.codsoft.dto.GameDTO;
 import com.codsoft.exception.GameNotFoundException;
+import com.codsoft.exception.UsersNotFoundException;
 import com.codsoft.model.Game;
+import com.codsoft.model.Users;
 import com.codsoft.repository.GameRepository;
+import com.codsoft.repository.UsersRepository;
 
 @Service
 public class GameServiceImpl implements GameService {
 	
 	@Autowired
 	private GameRepository gameRepository;
+	
+	@Autowired
+	private UsersRepository usersRepository;
 	
 	@Override
 	public List<GameDTO> retriveAllGamesWithUser() throws GameNotFoundException {
@@ -66,6 +72,28 @@ public class GameServiceImpl implements GameService {
 		}
 		
 		return opt.get();
+	}
+
+	@Override
+	public Game registerGameByUserId(Game game, Integer userId) throws GameNotFoundException, UsersNotFoundException {
+		// TODO Auto-generated method stub
+	
+		Optional<Users> userOpt = usersRepository.findById(userId);
+		
+		if(userOpt.isPresent()) {
+			throw new UsersNotFoundException("User is not Exist of userId " + userId);
+		}
+		
+		Optional<Game> gameOpt = gameRepository.findById(game.getGameId());
+		
+		if(gameOpt.isPresent()) {
+			throw new GameNotFoundException("With gameId "+ game.getGameId() + "is already exisits");
+		}
+		
+		userOpt.get().getGames().add(game);
+		gameRepository.save(game);
+		
+		return game;
 	}
 
 }

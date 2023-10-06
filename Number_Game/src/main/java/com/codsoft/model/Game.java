@@ -1,5 +1,9 @@
 package com.codsoft.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -22,6 +26,7 @@ public class Game{
 	private Integer take_rounds;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
 	private Users user;
 
 	public Integer getGameId() {

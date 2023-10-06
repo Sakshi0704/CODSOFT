@@ -23,5 +23,6 @@ public interface GameRepository extends JpaRepository<Game, Integer> {
 	
 	@Query("select u.name, g.take_rounds, g.scores from Users u inner join Game g on u.userId = g.user.userId order by u.name asc ")
 	public List<GameDTO> findAllGameWithUser();
+
 	
 }
