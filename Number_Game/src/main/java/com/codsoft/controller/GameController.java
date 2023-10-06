@@ -27,6 +27,40 @@ public class GameController {
 	private GameService gameService;
 	
 	
+	
+//    int result=0;
+//	
+//	@GetMapping("/getRandomNumber")
+//	public int getRandomNumber() {
+//		//System.out.println("result "+result);
+//		return result;
+//		
+//	}
+//	
+//	
+//	
+//	@PostMapping("/matchNumber")
+//	public boolean matchRandomNumber(@RequestBody Integer number) {
+//		
+//		 Random random = new Random();
+//		 
+//	     int randomNumber = random.nextInt(100) + 1;
+//		 result=randomNumber;
+//		 
+//     //	 System.out.println(randomNumber);
+//	     
+//	     if(number==randomNumber) {
+//	    	 return true;
+//	     }else {
+//	    	return  false;
+//	     }
+//	}
+	
+	@PostMapping("/startGame/{userId}")
+	public ResponseEntity<Integer> startGameGetRendomNumber(@PathVariable Integer userId){
+		
+	}
+	
 	@PostMapping("/game/{userId}")
 	public ResponseEntity<Game> registerGameByUserId(@RequestBody Game game, @PathVariable Integer userId) throws UsersNotFoundException, GameNotFoundException{
 	
