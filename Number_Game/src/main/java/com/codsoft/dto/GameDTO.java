@@ -2,29 +2,20 @@ package com.codsoft.dto;
 
 
 public class GameDTO {
-
-	private Integer Id;
 	
-	private String name;
+	private String userName;
 	
 	private Long scores;
 	
 	private Integer take_rounds;
 
-	public Integer getId() {
-		return Id;
+
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setId(Integer id) {
-		Id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public Long getScores() {
@@ -42,6 +33,5 @@ public class GameDTO {
 	public void setTake_rounds(Integer take_rounds) {
 		this.take_rounds = take_rounds;
 	}
-
 	
 }

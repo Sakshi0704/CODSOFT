@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codsoft.dto.GameDTO;
 import com.codsoft.exception.GameNotFoundException;
 import com.codsoft.model.Game;
 import com.codsoft.service.GameService;
@@ -18,8 +19,21 @@ import com.codsoft.service.GameService;
 @RestController
 public class GameController {
 
+	
 	@Autowired
 	private GameService gameService;
+	
+	
+	
+	@GetMapping("/games")
+	public ResponseEntity<List<GameDTO>> retriveAllGamesWithUser() throws GameNotFoundException{
+		
+		List<GameDTO> listGames = gameService.retriveAllGamesWithUser();
+		
+		return new ResponseEntity<List<GameDTO>>(listGames,HttpStatus.OK);
+	}
+	
+	
 	
 	@GetMapping("/games/{userId}")
 	public ResponseEntity<List<Game>> retriveAllGamesHandler(@PathVariable Integer userId) throws GameNotFoundException{
@@ -29,6 +43,8 @@ public class GameController {
 		return new ResponseEntity<List<Game>>(games, HttpStatus.OK);
 	}
 	
+	
+	
 	@GetMapping("/game/{gameId}")
 	public ResponseEntity<Game> retriveGameByIdHandler(@PathVariable Integer gameId) throws GameNotFoundException{
 		
@@ -36,5 +52,7 @@ public class GameController {
 		
 		return new ResponseEntity<Game>(game, HttpStatus.OK);
 	}
+	
+	
 	
 }

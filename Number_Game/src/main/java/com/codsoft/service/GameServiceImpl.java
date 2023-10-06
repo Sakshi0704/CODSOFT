@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.codsoft.dto.GameDTO;
 import com.codsoft.exception.GameNotFoundException;
 import com.codsoft.model.Game;
 import com.codsoft.repository.GameRepository;
@@ -17,11 +18,16 @@ public class GameServiceImpl implements GameService {
 	private GameRepository gameRepository;
 	
 	@Override
-	public List<Game> retriveAllGamesWithUser() throws GameNotFoundException {
+	public List<GameDTO> retriveAllGamesWithUser() throws GameNotFoundException {
 		// TODO Auto-generated method stub
 		
+		List<GameDTO> listGames = gameRepository.findAllGameWithUser();
 		
-		return null;
+		if(listGames.isEmpty()) {
+			throw new GameNotFoundException("To Record exits");
+		}
+		
+		return listGames;
 	}
 
 	@Override
