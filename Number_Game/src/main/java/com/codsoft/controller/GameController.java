@@ -1,6 +1,7 @@
 package com.codsoft.controller;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codsoft.dto.GameDTO;
@@ -26,40 +28,32 @@ public class GameController {
 	@Autowired
 	private GameService gameService;
 	
+	private Integer randomNumber = 0;
+
 	
-	
-//    int result=0;
-//	
-//	@GetMapping("/getRandomNumber")
-//	public int getRandomNumber() {
-//		//System.out.println("result "+result);
-//		return result;
-//		
-//	}
-//	
-//	
-//	
-//	@PostMapping("/matchNumber")
-//	public boolean matchRandomNumber(@RequestBody Integer number) {
-//		
-//		 Random random = new Random();
-//		 
-//	     int randomNumber = random.nextInt(100) + 1;
-//		 result=randomNumber;
-//		 
-//     //	 System.out.println(randomNumber);
-//	     
-//	     if(number==randomNumber) {
-//	    	 return true;
-//	     }else {
-//	    	return  false;
-//	     }
-//	}
-	
-	@PostMapping("/startGame/{userId}")
-	public ResponseEntity<Integer> startGameGetRendomNumber(@PathVariable Integer userId){
+	@GetMapping("/startGame")
+	public ResponseEntity<Integer> startGameGetRendomNumber(){
 		
+		Random random = new Random();
+		
+		randomNumber = random.nextInt(100) + 1;
+		
+		return new ResponseEntity<>(randomNumber,HttpStatus.CREATED);
 	}
+	
+	
+	@PostMapping("/matchNumber")
+	public boolean matchRandomNumber(@RequestBody Integer number) {
+		 
+     	 System.out.println(randomNumber);
+	     
+	     if(number==randomNumber) {
+	    	 return true;
+	     }else {
+	    	return  false;
+	     }
+	}
+	
 	
 	@PostMapping("/game/{userId}")
 	public ResponseEntity<Game> registerGameByUserId(@RequestBody Game game, @PathVariable Integer userId) throws UsersNotFoundException, GameNotFoundException{

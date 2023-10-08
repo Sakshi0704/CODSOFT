@@ -20,5 +20,6 @@ public interface GameService {
 	public Game deleteGameByGameId(Integer gameId) throws GameNotFoundException;
 	
 	public Game registerGameByUserId(Game game, Integer userId) throws GameNotFoundException,UsersNotFoundException;
+
 	
 }
