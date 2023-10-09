@@ -21,17 +21,14 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer student_id;
 
-	@Size(min = 1,max = 40, message = "student roll number should be in range 1 to 40")
 	@Column(unique = true)
-	private Integer rollNo;
+	private String rollNo;
 	
 	@NotNull(message = "$Value{name}")
 	@NotEmpty(message = "First Name should not be empty")
 	private String firstName;
 	
-	
 	private String lastName;
-	
 	
 	private LocalDate date_of_birth;
 	
