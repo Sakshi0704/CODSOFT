@@ -1,5 +1,7 @@
 package com.codsoft.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,8 +12,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Data
+@Setter
+@Getter
 public class Course {
 
 	@Id
@@ -28,6 +36,8 @@ public class Course {
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@Column(name = "instuctorID")
 	private Instructor instructor;
+	
+	
 	
 	
 
