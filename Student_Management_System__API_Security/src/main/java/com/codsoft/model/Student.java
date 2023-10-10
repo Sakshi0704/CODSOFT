@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -30,6 +31,7 @@ public class Student {
 	
 	private String lastName;
 	
+    @Past(message = "Date of birth must be in the past")
 	private LocalDate date_of_birth;
 	
 	@Email
@@ -44,10 +46,5 @@ public class Student {
 	@NotNull(message = "Address should not be null")
 	@NotEmpty(message = "Address should not be empty")
 	private String address;
-	
-	@Enumerated
-	@Column(name = "class")
-	private Class cName;
-	
 	
 }
