@@ -28,5 +28,7 @@ public class Course {
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@Column(name = "instuctorID")
 	private Instructor instructor;
+	
+	
 
 }
